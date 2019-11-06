@@ -20,15 +20,16 @@ import smtplib
 def email_alert(examp_str=""):
 
     server = smtplib.SMTP('smtp.gmail.com', port=587)
+    server.starttls()
 
     print("Server Started...")
-    server.login('trewqbaba1@gmail.com','walson654')
+    server.login('samanthkota007@gmail.com','walson654')
 
     print("Server Login Successful")
     msg = examp_str
 
     try:
-        server.sendmail('trewqbaba1@gmail.com','trewqbaba1@gmail.com',msg)
+        server.sendmail('samanthkota007@gmail.com','samanthkota007@gmail.com',msg)
     except:
         return server
 
