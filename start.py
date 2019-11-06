@@ -15,11 +15,28 @@ import dlib
 import time
 import pygame
 from gpiozero import MotionSensor
+import smtplib
 
-pygame.mixer.init()
-pygame.mixer.music.load("Audio.mp3")
+def email_alert(examp_str=""):
 
-pir = MotionSensor(23)
+    server = smtplib.SMTP_SSL('smtp.zoho.com', port=465)
+
+    print("Server Started...")
+    server.login('samanthkota007@@gmail.com','walson654')
+
+    print("Server Login Successful")
+    msg = examp_str
+
+    try:
+        server.sendmail('samanthkota007@gmail.com','samanthkota007@gmail.com',msg)
+    except:
+        return server
+
+    print("Sending Message...")
+    server.quit()
+    print("Quit Server")
+
+    pir = MotionSensor(23)
 
 def motion_detected():
 
@@ -55,11 +72,11 @@ def main(video_capture, saved_face_descriptor, names, detect_faces, predictor, f
                 if (val < 0.6):
                 	name = names[idx]
 
-                print(name)
+                email_alert(name+"at home")
                 # Save image for future use
                 if name=="Unknown":
                     cv2.imwrite(os.path.join(os.getcwd(), "unknown", str(int(time.time()))+".png"), frame)
-                    pygame.mixer.music.play()
+                    email_alert("intruder alert")
                 else:
                     return
 
