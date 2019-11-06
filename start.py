@@ -19,16 +19,16 @@ import smtplib
 
 def email_alert(examp_str=""):
 
-    server = smtplib.SMTP_SSL('smtp.zoho.com', port=465)
+    server = smtplib.SMTP('smtp.gmail.com', port=587)
 
     print("Server Started...")
-    server.login('samanthkota007@@gmail.com','walson654')
+    server.login('trewqbaba1@gmail.com','walson654')
 
     print("Server Login Successful")
     msg = examp_str
 
     try:
-        server.sendmail('samanthkota007@gmail.com','samanthkota007@gmail.com',msg)
+        server.sendmail('trewqbaba1@gmail.com','trewqbaba1@gmail.com',msg)
     except:
         return server
 
